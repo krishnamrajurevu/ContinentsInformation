@@ -1,0 +1,23 @@
+@(title : String,cities : List[String],message : String)
+@layout(title){
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="heading-h3">@title</h3>
+    </div>
+</div>
+<b class="link-style"> Home <a href="@routes.CountryController.index()">>here</a></b>
+<div class="center_div">
+    <h6 class="heading-h3 success-h6 ">@message</h6>
+    @if(!cities.isEmpty){
+       <ul>
+           @for(city <- cities){
+                <li>@city</li>
+           }
+       </ul>
+    }
+<form method="get" action="getGroupedCities">
+    Enter Character : <input type="text" name="cityName" maxlength="1"/>
+    <input type="submit">
+</form>
+</div>
+}

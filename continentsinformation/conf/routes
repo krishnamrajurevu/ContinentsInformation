@@ -4,7 +4,66 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /default                           controllers.HomeController.index
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+GET     /javascriptRoutes      controllers.CountryController.javascriptRoutes
+
+
+#Controller for showing countries information
+
+GET     /                                                           controllers.CountryController.index()
+
+GET     /getAllContinents                                           controllers.CountryController.getAllContinents(message : String)
+
+GET     /addContinent                                               controllers.CountryController.addContinent()
+
++ nocsrf
+POST    /createContinent                                            controllers.CountryController.createContinent()
+
+GET     /deleteContinent                                            controllers.CountryController.deleteContinent(continentId : Int)
+
+GET     /getCountriesOfContinent/:continentId/:continentName        controllers.CountryController.getCountriesOfContinent(continentId : Int,continentName : String,message : String)
+
+GET     /addCountryToContinent/:continentId/:continentName          controllers.CountryController.addCountryToContinent(continentId : Int,continentName : String )
+
++ nocsrf
+POST    /addCountryToContinent/:continentId/createCountry           controllers.CountryController.createCountry(continentId : Int)
+
+GET     /deleteCountry                                              controllers.CountryController.deleteCountry(countryId : Int,continentId : Int,continentName : String)
+
+GET     /getCitiesOfCountry/:countryId/:countryName                 controllers.CountryController.getCitiesOfCountry(countryId : Int,countryName : String,message : String)
+
+GET     /addCityToCountry/:countryId/:countryName                   controllers.CountryController.addCityToCountry(countryId : Int,countryName : String)
+
++ nocsrf
+POST    /addCityToCountry/:countryId/createCity                     controllers.CountryController.createCity(countryId : Int )
+
+GET     /deleteCity                                                 controllers.CountryController.deleteCity(cityId : Int,countryId : Int,countryName : String)
+
+GET     /getContinentOfCountry                                      controllers.CountryController.getContinentOfCountry()
+
+GET     /getContinent                                               controllers.CountryController.getContinent(countryName: String)
+
+GET     /getAllCitiesOfContinent                                    controllers.CountryController.getAllCitiesOfContinent()
+
+GET     /getAllCities                                               controllers.CountryController.getAllCities(continentName : String)
+
+GET     /checkTwoCountriesLiesInContinent                           controllers.CountryController.checkTwoCountriesLiesInContinent()
+
+GET     /countriesLieInContinent                                    controllers.CountryController.countriesLieInContinent(firstCountry : String , secondCountry : String)
+
+GET     /addCitiesToCountry                                         controllers.CountryController.addCitiesToCountry()
+
++ nocsrf
+POST    /createMultipleCities                                       controllers.CountryController.createMultipleCities()
+
+GET     /getGroupCities                                             controllers.CountryController.getGroupCities()
+
+GET     /getGroupedCities                                           controllers.CountryController.getGroupedCities(cityName : Char)
+
+
+
+

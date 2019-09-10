@@ -1,0 +1,46 @@
+@import scala.collection.mutable.ListBuffer
+@(countryId : Int,countryName : String,cities : ListBuffer[City],message : String)
+@layout(s"List Of Cities In $countryName"){
+
+<script>
+function deleteCity(cityId,countryId,countryName) {
+  var txt;
+  var res = confirm("Do you want to delete city!");
+  if (res == true) {
+    $.ajax(jsRoutes.controllers.CountryController.deleteCity(cityId,countryId,countryName)).done( location.reload())
+  }
+}
+</script>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1 class="heading-h3">List Of Cities In @countryName</h1>
+        <h6 class="heading-h3 success-h6 ">@message</h6>
+    </div>
+</div>
+@if(cities.isEmpty){
+<h6 class="heading-h3 success-h6 ">No cities existed in @countryName</h6><b class="link-style">Add city <a href="@routes.CountryController.addCityToCountry(countryId,countryName)">here</a></b>
+}else{
+<b class="link-style">Add city <a href="@routes.CountryController.addCityToCountry(countryId,countryName)">here</a></b>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>City Id</th>
+            <th>City Name</th>
+            <th>Country Id</th>
+            <th>Delete City</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for(city <- cities){
+        <tr>
+            <td>@city.cityId</td>
+            <td>@city.cityName</td>
+            <td>@city.countryId</td>
+            <td><a href="#" onclick="deleteCity(@city.cityId,@countryId,'@countryName')">Remove</a></td>
+        </tr>
+        }
+        </tbody>
+    </table>
+}
+}

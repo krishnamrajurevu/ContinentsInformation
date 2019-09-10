@@ -1,0 +1,29 @@
+@import scala.collection.mutable.ListBuffer
+@(title : String,cities : ListBuffer[String])
+@layout(title){
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="heading-h3">@title</h3>
+    </div>
+</div>
+
+@if(cities.isEmpty){
+<h6 class="heading-h3 ">No cities existed</h6>
+}else{
+<h3 class="heading-h3">List of cities</h3>
+<div class="text-center">
+<ul class="list-inline">
+    @for(city <- cities){
+    <li>@city</li>
+    }
+</ul>
+</div>
+}
+<b class="link-style"> Home <a href="@routes.CountryController.index()">here</a></b>
+<div class="center_div">
+<form method="get" action="getAllCities">
+    Continent Name : <input type="text" name="continentName">
+    <input type="submit"  value="Get">
+</form>
+</div>
+}

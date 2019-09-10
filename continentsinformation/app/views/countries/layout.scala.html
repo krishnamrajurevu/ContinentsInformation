@@ -1,0 +1,60 @@
+@import controllers.routes.javascript._
+@(title : String)(body : Html)
+<html>
+<head>
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/bootstrap.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/styles.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="@routes.CountryController.index()">Qvantel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@routes.CountryController.getAllContinents("")">AllContinents</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@routes.CountryController.addContinent()">AddContinent</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@routes.CountryController.getContinentOfCountry()">ContinentOfACountry</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@routes.CountryController.getAllCitiesOfContinent()">CitiesOfAContinent</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@routes.CountryController.checkTwoCountriesLiesInContinent()">CountriesInContinent</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@routes.CountryController.addCitiesToCountry()">AddCitiesToCountry</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@routes.CountryController.getGroupCities()">GroupCities</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </nav>
+
+    @body
+</div>
+<script src="@routes.Assets.versioned("js/jquery-3.4.1.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("js/bootstrap.min.js")" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8" src="@routes.CountryController.javascriptRoutes"></script>
+</body>
+</html>

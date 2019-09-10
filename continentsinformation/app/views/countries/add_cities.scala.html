@@ -1,0 +1,31 @@
+@import scala.collection.mutable.ListBuffer
+@(title : String,countries : ListBuffer[Country], message : String)
+@layout(title){
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="heading-h3">@title</h3>
+    </div>
+</div>
+
+<b class="link-style"> Home <a href="@routes.CountryController.index()">>here</a></b>
+<h6 class="heading-h3 success-h6 ">@message</h6>
+
+<div class="center_div">
+@if(countries.isEmpty){
+    <h6 class="heading-h3 success-h6 ">Countries not existed in world</h6>
+    }else{
+
+<form method="post" action="createMultipleCities">
+
+    Select Country : <select name="countryId">
+    @for(country <- countries){
+        <option value=@country.countryId>@country.countryName</option>
+    }
+    </select><br>
+    Cities Names : <input type="tel" name="cities">
+    <input type="submit">
+</form>
+    }
+</div>
+}

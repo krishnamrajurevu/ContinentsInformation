@@ -1,0 +1,18 @@
+@(title : String, message : String)
+@layout(title){
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1 class="heading-h3">@title</h1>
+    </div>
+</div>
+<b class="link-style"> Home <a href="@routes.CountryController.index()">>here</a></b>
+<h6 class="heading-h3 success-h6 ">@message</h6>
+<div class="center_div">
+    <form method="get" action="countriesLieInContinent">
+        First Country : <input type="text" name="firstCountry"/><br/>
+        Second Country : <input type="text" name="secondCountry"/>
+        <input type="submit" value="Check">
+    </form>
+</div>
+    }
