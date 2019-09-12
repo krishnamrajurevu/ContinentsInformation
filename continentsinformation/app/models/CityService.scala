@@ -4,55 +4,47 @@ import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
 trait CityService {
-  def getAllCitiesByCountry(countryId : Int):ListBuffer[City]
+  def getAllCitiesByCountry(countryId: Int): List[City]
 
-  def createCity(cityName: String, countryId: Int): mutable.Map[String, String]
+  def createCity(cityName: String, countryId: Int): Option[String]
 
-  def getAllCitiesByContinent(continentName: String) :  ListBuffer[String]
+  def getAllCitiesByContinent(continentName: String): Option[List[String]]
 
   def getCitiesByGroup(): Map[Char, Seq[String]]
 
-  def removeCitiesOfCountry(countryIds : List[Int])
+  def removeCitiesOfCountry(countryIds: List[Int]): Option[String]
 
-  def removeCitiesOfCountry(countryId: Int)
+  def removeCitiesOfCountry(countryId: Int): Option[String]
 
-  def removeCity(cityId: Int) : String
+  def removeCity(cityId: Int): Option[String]
 }
 
 object CityService extends CityService {
 
-  override def getAllCitiesByCountry(countryId : Int): ListBuffer[City] = City.getAllCityOfCountry(countryId)
+  override def getAllCitiesByCountry(countryId: Int): List[City] = City.getAllCityOfCountry(countryId)
 
-  override def createCity(cityName: String, countryId: Int): mutable.Map[String, String] ={
-    var resultMap=mutable.Map[String,String]()
-    if( City.createCity(cityName,countryId)) {
-      resultMap("status")= "success"
-      resultMap("message")=s"City $cityName added successfully"
-    }else{
-      resultMap("status")= "failed"
-      resultMap("message")=s"City $cityName not added"
-    }
-    resultMap
+  override def createCity(cityName: String, countryId: Int): Option[String] = {
+    City.createCity(cityName, countryId)
   }
 
-  override def getAllCitiesByContinent(continentName: String):  ListBuffer[String] = {
+  override def getAllCitiesByContinent(continentName: String): Option[List[String]] = {
     City.getAllCitiesByContinent(continentName)
   }
 
   override def getCitiesByGroup(): Map[Char, Seq[String]] = {
-    val groupCities : Map[Char, Seq[String]]= City.getGroupCities()
-    groupCities
+    City.getGroupCities()
+
   }
 
-  override def removeCitiesOfCountry(countryIds: List[Int]): Unit = {
+  override def removeCitiesOfCountry(countryIds: List[Int]): Option[String] = {
     City.removeCitiesOfCountry(countryIds)
   }
 
-  override def removeCitiesOfCountry(countryId: Int): Unit = {
+  override def removeCitiesOfCountry(countryId: Int): Option[String] = {
     City.removeCitiesOfCountry(countryId)
   }
 
-  def removeCity(cityId: Int) : String = {
+  def removeCity(cityId: Int): Option[String] = {
     City.removeCity(cityId)
   }
 

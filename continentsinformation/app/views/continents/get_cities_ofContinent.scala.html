@@ -1,5 +1,4 @@
-@import scala.collection.mutable.ListBuffer
-@(title : String,cities : ListBuffer[String])
+@(title : String,cities : List[String])
 @layout(title){
 <div class="row">
     <div class="col-sm-12">
@@ -19,7 +18,7 @@
 </ul>
 </div>
 }
-<b class="link-style"> Home <a href="@routes.CountryController.index()">here</a></b>
+<b class="link-style"> Home <a href="@routes.ContinentController.index()">here</a></b>
 <div class="center_div">
 <form method="get" action="getAllCities">
     Continent Name : <input type="text" name="continentName">

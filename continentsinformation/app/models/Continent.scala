@@ -7,25 +7,27 @@ case class Continent(continentId: Int, continentName: String)
 object Continent {
   private val continents = new ListBuffer[Continent]()
 
-  def getAllContinents(): ListBuffer[Continent] = continents
+  def getAllContinents(): List[Continent] = continents.toList
 
-  def addContinent(continentName: String) = {
+  def addContinent(continentName: String): Option[Continent] = {
     continents.find(_.continentName == continentName) match {
       case Some(_) => None
-      case None =>
-        val maxConId = continents.maxByOption(_.continentId).map(_.continentId + 1).getOrElse(1)
-        val continent = Continent(maxConId, continentName)
+      case None => val continent = Continent(continents.maxByOption(_.continentId).map(_.continentId + 1).getOrElse(1), continentName)
         continents += continent
         Some(continent)
     }
-
   }
 
-  def removeContinent(continentId: Int): String = {
-    continents.find(_.continentId == continentId).fold("Nothing to do") { value =>
-      CountryService.removeCountryByContinent(continentId)
+  def removeContinent(continentId: Int): Option[String] = {
+    continents.find(_.continentId == continentId).fold[Option[String]](None) { value =>
+      val result: Option[String] = CountryService.removeCountryByContinent(continentId)
+      val message = result match {
+        case Some(value) => ", " + value + " of continents"
+        case None => ""
+      }
       continents.filterInPlace(_.continentId != continentId)
-      "Continent,countries,cities of continents successfully deleted"
+      Some(s"Continent $message successfully deleted")
     }
   }
+
 }

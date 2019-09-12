@@ -4,39 +4,25 @@ import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
 trait ContinentService {
-  def getAllContinent(): ListBuffer[Continent]
+  def getAllContinent(): List[Continent]
 
-  def createContinent(continentName: String): mutable.Map[String, String]
+  def createContinent(continentName: String): Option[Continent]
 
-  def removeContinent(continentId: Int): String
+  def removeContinent(continentId: Int): Option[String]
 }
 
 object ContinentService extends ContinentService {
 
-  override def getAllContinent(): ListBuffer[Continent] = Continent.getAllContinents()
+  override def getAllContinent(): List[Continent] = Continent.getAllContinents()
 
-  override def createContinent(continentName: String): mutable.Map[String, String] = {
-    var resultMap = mutable.Map[String, String]()
-    try {
-      Continent.addContinent(continentName) match {
-        case Some(continent) =>
-          resultMap("status") = "success"
-          resultMap("message") = s"Continent $continentName added successfully"
-        case None =>
-          resultMap("status") = "failed"
-          resultMap("message") = s"Continent $continentName not added"
-      }
-      resultMap
-    } catch {
-      case e: Exception => {
-        resultMap("status") = "failed"
-        resultMap("message") = s"Continent $continentName not added"
-      }
+  override def createContinent(continentName: String): Option[Continent] = {
+    Continent.addContinent(continentName) match {
+      case Some(continent) => Some(continent)
+      case None => None
     }
-    resultMap
   }
 
-  override def removeContinent(continentId: Int): String = {
+  override def removeContinent(continentId: Int): Option[String] = {
     Continent.removeContinent(continentId)
   }
 }

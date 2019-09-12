@@ -3,66 +3,64 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
-# An example controller showing a sample home page
-GET     /default                           controllers.HomeController.index
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-GET     /javascriptRoutes      controllers.CountryController.javascriptRoutes
+GET     /javascriptRoutes      controllers.ContinentController.javascriptRoutes
 
 
 #Controller for showing countries information
 
-GET     /                                                           controllers.CountryController.index()
+GET     /                                                           controllers.ContinentController.index()
 
-GET     /getAllContinents                                           controllers.CountryController.getAllContinents(message : String)
+GET     /getAllContinents                                           controllers.ContinentController.getAllContinents(message : String)
 
-GET     /addContinent                                               controllers.CountryController.addContinent()
-
-+ nocsrf
-POST    /createContinent                                            controllers.CountryController.createContinent()
-
-GET     /deleteContinent                                            controllers.CountryController.deleteContinent(continentId : Int)
-
-GET     /getCountriesOfContinent/:continentId/:continentName        controllers.CountryController.getCountriesOfContinent(continentId : Int,continentName : String,message : String)
-
-GET     /addCountryToContinent/:continentId/:continentName          controllers.CountryController.addCountryToContinent(continentId : Int,continentName : String )
+GET     /addContinent                                               controllers.ContinentController.addContinent()
 
 + nocsrf
-POST    /addCountryToContinent/:continentId/createCountry           controllers.CountryController.createCountry(continentId : Int)
+POST    /createContinent                                            controllers.ContinentController.createContinent()
 
-GET     /deleteCountry                                              controllers.CountryController.deleteCountry(countryId : Int,continentId : Int,continentName : String)
+GET     /deleteContinent                                            controllers.ContinentController.deleteContinent(continentId : Int)
 
-GET     /getCitiesOfCountry/:countryId/:countryName                 controllers.CountryController.getCitiesOfCountry(countryId : Int,countryName : String,message : String)
+GET     /getCountriesOfContinent/:continentId/:continentName        controllers.ContinentController.getCountriesOfContinent(continentId : Int,continentName : String,message : String)
 
-GET     /addCityToCountry/:countryId/:countryName                   controllers.CountryController.addCityToCountry(countryId : Int,countryName : String)
-
-+ nocsrf
-POST    /addCityToCountry/:countryId/createCity                     controllers.CountryController.createCity(countryId : Int )
-
-GET     /deleteCity                                                 controllers.CountryController.deleteCity(cityId : Int,countryId : Int,countryName : String)
-
-GET     /getContinentOfCountry                                      controllers.CountryController.getContinentOfCountry()
-
-GET     /getContinent                                               controllers.CountryController.getContinent(countryName: String)
-
-GET     /getAllCitiesOfContinent                                    controllers.CountryController.getAllCitiesOfContinent()
-
-GET     /getAllCities                                               controllers.CountryController.getAllCities(continentName : String)
-
-GET     /checkTwoCountriesLiesInContinent                           controllers.CountryController.checkTwoCountriesLiesInContinent()
-
-GET     /countriesLieInContinent                                    controllers.CountryController.countriesLieInContinent(firstCountry : String , secondCountry : String)
-
-GET     /addCitiesToCountry                                         controllers.CountryController.addCitiesToCountry()
+GET     /addCountryToContinent/:continentId/:continentName          controllers.ContinentController.addCountryToContinent(continentId : Int,continentName : String )
 
 + nocsrf
-POST    /createMultipleCities                                       controllers.CountryController.createMultipleCities()
+POST    /addCountryToContinent/:continentId/createCountry           controllers.ContinentController.createCountry(continentId : Int)
 
-GET     /getGroupCities                                             controllers.CountryController.getGroupCities()
+GET     /deleteCountry                                              controllers.ContinentController.deleteCountry(countryId : Int,continentId : Int,continentName : String)
 
-GET     /getGroupedCities                                           controllers.CountryController.getGroupedCities(cityName : Char)
+GET     /getCitiesOfCountry/:countryId/:countryName                 controllers.ContinentController.getCitiesOfCountry(countryId : Int,countryName : String,message : String)
+
+GET     /addCityToCountry/:countryId/:countryName                   controllers.ContinentController.addCityToCountry(countryId : Int,countryName : String)
+
++ nocsrf
+POST    /addCityToCountry/:countryId/createCity                     controllers.ContinentController.createCity(countryId : Int )
+
+GET     /deleteCity                                                 controllers.ContinentController.deleteCity(cityId : Int,countryId : Int,countryName : String)
+
+GET     /getContinentOfCountry                                      controllers.ContinentController.getContinentOfCountry()
+
+GET     /getContinent                                               controllers.ContinentController.getContinent(countryName: String)
+
+GET     /getAllCitiesOfContinent                                    controllers.ContinentController.getAllCitiesOfContinent()
+
+GET     /getAllCities                                               controllers.ContinentController.getAllCities(continentName : String)
+
+GET     /checkTwoCountriesLiesInContinent                           controllers.ContinentController.checkTwoCountriesLiesInContinent()
+
+GET     /countriesLieInContinent                                    controllers.ContinentController.countriesLieInContinent(firstCountry : String , secondCountry : String)
+
+GET     /addCitiesToCountry                                         controllers.ContinentController.addCitiesToCountry()
+
++ nocsrf
+POST    /createMultipleCities                                       controllers.ContinentController.createMultipleCities()
+
+GET     /getGroupCities                                             controllers.ContinentController.getGroupCities()
+
+GET     /getGroupedCities                                           controllers.ContinentController.getGroupedCities(cityName : Char)
 
 
 

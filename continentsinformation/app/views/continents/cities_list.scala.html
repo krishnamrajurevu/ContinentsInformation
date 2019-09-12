@@ -1,15 +1,14 @@
-@import scala.collection.mutable.ListBuffer
-@(countryId : Int,countryName : String,cities : ListBuffer[City],message : String)
+@(countryId : Int,countryName : String,cities : List[City],message : String)
 @layout(s"List Of Cities In $countryName"){
 
 <script>
-function deleteCity(cityId,countryId,countryName) {
-  var txt;
-  var res = confirm("Do you want to delete city!");
-  if (res == true) {
-    $.ajax(jsRoutes.controllers.CountryController.deleteCity(cityId,countryId,countryName)).done( location.reload())
-  }
-}
+    function deleteCity(cityId,countryId,countryName) {
+    var txt;
+    var res = confirm("Do you want to delete city!");
+    if (res == true) {
+    $.ajax(jsRoutes.controllers.ContinentController.deleteCity(cityId,countryId,countryName)).done( location.reload())
+    }
+    }
 </script>
 
 <div class="row">
@@ -19,9 +18,9 @@ function deleteCity(cityId,countryId,countryName) {
     </div>
 </div>
 @if(cities.isEmpty){
-<h6 class="heading-h3 success-h6 ">No cities existed in @countryName</h6><b class="link-style">Add city <a href="@routes.CountryController.addCityToCountry(countryId,countryName)">here</a></b>
+<h6 class="heading-h3 success-h6 ">No cities existed in @countryName</h6><b class="link-style">Add city <a href="@routes.ContinentController.addCityToCountry(countryId,countryName)">here</a></b>
 }else{
-<b class="link-style">Add city <a href="@routes.CountryController.addCityToCountry(countryId,countryName)">here</a></b>
+<b class="link-style">Add city <a href="@routes.ContinentController.addCityToCountry(countryId,countryName)">here</a></b>
     <table class="table table-bordered">
         <thead>
         <tr>
